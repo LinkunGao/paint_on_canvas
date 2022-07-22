@@ -20,11 +20,6 @@ function switchmode() {
 </template>
 
 <style scoped>
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
 .btn_c {
   z-index: 1;
   width: 100vw;

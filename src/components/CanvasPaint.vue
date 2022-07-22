@@ -73,12 +73,13 @@ onMounted(() => {
   deleteBtn = $refs.delete;
   coloPanel = $refs.coloPanel;
   colorBtn = $refs.colorBtn;
-  console.log($refs);
-  console.log(canvas);
-  setTimeout(() => {
-    console.log($refs);
-  }, 1000);
-  if (canvas) ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+  //   console.log($refs);
+  //   console.log(canvas);
+  //   setTimeout(() => {
+  //     console.log($refs);
+  //   }, 1000);
+  console.log("v1");
+  ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
   initCanvas();
 
   canvas.addEventListener("mousedown", function (event) {
@@ -200,13 +201,13 @@ function drawLine({
 </script>
 
 <style lang="scss" scoped>
-* {
-  margin: 0;
-  box-sizing: border-box;
-}
-body {
-  height: 100vh;
-}
+// * {
+//   margin: 0;
+//   box-sizing: border-box;
+// }
+// body {
+//   height: 100vh;
+// }
 li {
   list-style-type: none;
 }
