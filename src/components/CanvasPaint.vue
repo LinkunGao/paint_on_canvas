@@ -14,7 +14,7 @@
         id="color"
         class="tool-item"
         style="--selected-color: #f50c0c"
-        ref="color"
+        ref="colorBtn"
       >
         <div class="color"></div>
       </li>
@@ -37,15 +37,15 @@
 </template>
 
 <script setup lang="ts">
-import { getCurrentInstance, onMounted } from "vue";
+import { getCurrentInstance, onMounted, ref } from "vue";
 let refs = null;
-let canvas: HTMLCanvasElement;
-let a: HTMLAnchorElement;
-let pencil: HTMLLIElement;
-let eraser: HTMLLIElement;
-let deleteBtn: HTMLLIElement;
-let coloPanel: HTMLDivElement;
-let colorBtn: HTMLLIElement;
+let canvas: HTMLCanvasElement = ref<any>(null);
+let a: HTMLAnchorElement = ref<any>(null);
+let pencil: HTMLLIElement = ref<any>(null);
+let eraser: HTMLLIElement = ref<any>(null);
+let deleteBtn: HTMLLIElement = ref<any>(null);
+let coloPanel: HTMLDivElement = ref<any>(null);
+let colorBtn: HTMLLIElement = ref<any>(null);
 let ctx: CanvasRenderingContext2D;
 let startPos: { x: number | undefined; y: number | undefined } = {
   x: undefined,
@@ -72,8 +72,12 @@ onMounted(() => {
   eraser = $refs.eraser;
   deleteBtn = $refs.delete;
   coloPanel = $refs.coloPanel;
-  colorBtn = $refs.color;
+  colorBtn = $refs.colorBtn;
+  console.log($refs);
   console.log(canvas);
+  setTimeout(() => {
+    console.log($refs);
+  }, 1000);
   if (canvas) ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
   initCanvas();
 
