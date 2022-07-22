@@ -38,7 +38,7 @@
 
 <script setup lang="ts">
 import { getCurrentInstance, onMounted } from "vue";
-let refs;
+let refs = null;
 let canvas: HTMLCanvasElement;
 let a: HTMLAnchorElement;
 let pencil: HTMLLIElement;
@@ -65,14 +65,15 @@ interface drawLineType {
 }
 onMounted(() => {
   let { $refs } = (getCurrentInstance() as any).proxy;
-  refs = $refs;
-  canvas = refs.canvas;
-  a = refs.download;
-  pencil = refs.pencil;
-  eraser = refs.eraser;
-  deleteBtn = refs.delete;
-  coloPanel = refs.coloPanel;
-  colorBtn = refs.color;
+  //   refs = $refs;
+  canvas = $refs.canvas;
+  a = $refs.download;
+  pencil = $refs.pencil;
+  eraser = $refs.eraser;
+  deleteBtn = $refs.delete;
+  coloPanel = $refs.coloPanel;
+  colorBtn = $refs.color;
+  console.log(canvas);
   if (canvas) ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
   initCanvas();
 
