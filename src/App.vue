@@ -37,7 +37,6 @@ function switchmode() {
   background-color: rgba(8, 238, 96, 0.7);
   text-align: center;
   border-radius: 10px;
-  padding-top: 5px;
   cursor: pointer;
 }
 .button:hover {

@@ -55,6 +55,7 @@ let isPainting = false;
 let isErasering = false;
 let brushColor = "#f50c0c";
 let action = "draw";
+let Is_PC = true;
 
 interface drawLineType {
   startX: number;
@@ -79,18 +80,48 @@ onMounted(() => {
   //     console.log($refs);
   //   }, 1000);
   console.log("v1");
+  if (checkStation() === "ipad") {
+    Is_PC = false;
+  } else {
+    Is_PC = true;
+  }
   ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
   initCanvas();
 
-  canvas.addEventListener("mousedown", function (event) {
-    startPos.x = event.offsetX;
-    startPos.y = event.offsetY;
-    isPainting = true;
-  });
+  if (Is_PC) {
+    canvas.addEventListener("mousedown", getXY);
 
-  canvas.addEventListener("mousemove", function (event) {
-    const endX = event.offsetX;
-    const endY = event.offsetY;
+    canvas.addEventListener("mousemove", getMoveXY);
+
+    canvas.addEventListener("mouseup", mouseEnd);
+  } else {
+    canvas.addEventListener("touchstart", getXY);
+
+    canvas.addEventListener("touchmove", getMoveXY);
+
+    canvas.addEventListener("touchend", mouseEnd);
+  }
+  function getXY(event: MouseEvent | TouchEvent) {
+    if (Is_PC) {
+      startPos.x = (event as MouseEvent).offsetX;
+      startPos.y = (event as MouseEvent).offsetY;
+    } else {
+      startPos.x = (event as TouchEvent).touches[0].pageX;
+      startPos.y = (event as TouchEvent).touches[0].pageY;
+    }
+
+    isPainting = true;
+  }
+  function getMoveXY(event: MouseEvent | TouchEvent) {
+    let endX = 0;
+    let endY = 0;
+    if (Is_PC) {
+      endX = (event as MouseEvent).offsetX;
+      endY = (event as MouseEvent).offsetY;
+    } else {
+      endX = (event as TouchEvent).touches[0].pageX;
+      endY = (event as TouchEvent).touches[0].pageY;
+    }
     if (
       isPainting &&
       typeof startPos.x === "number" &&
@@ -110,13 +141,12 @@ onMounted(() => {
         startPos.y = endY;
       }
     }
-  });
-
-  canvas.addEventListener("mouseup", function (event) {
+  }
+  function mouseEnd(event: MouseEvent | TouchEvent) {
     isPainting = false;
     startPos = { x: undefined, y: undefined };
     enableDownload(canvas);
-  });
+  }
 
   pencil.addEventListener("click", function () {
     action = "draw";
@@ -198,6 +228,20 @@ function drawLine({
   // end drawing
   ctx.closePath();
 }
+
+function checkStation() {
+  var info = navigator.userAgent;
+  if (
+    info.indexOf("iPod") != -1 ||
+    info.indexOf("iPad") != -1 ||
+    info.indexOf("iPhone") != -1 ||
+    info.indexOf("Android") != -1
+  ) {
+    return "ipad";
+  } else {
+    return "pc";
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -265,7 +309,7 @@ canvas.eraser {
   padding: 8px 12px;
   border: 1px solid #eee;
   position: absolute;
-  bottom: 17%;
+  bottom: 20%;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
@@ -300,13 +344,13 @@ canvas.eraser {
     bottom: 10%;
   }
   to {
-    bottom: 17%;
+    bottom: 20%;
     opacity: 1;
   }
 }
 @keyframes hide {
   from {
-    bottom: 17%;
+    bottom: 20%;
     opacity: 1;
   }
   50% {

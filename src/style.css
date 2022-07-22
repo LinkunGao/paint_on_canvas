@@ -19,7 +19,8 @@
   box-sizing: border-box;
 }
 body {
-  height: 100vh;
+  /* height: 100vh; */
+  overflow: hidden;
 }
 #app {
   font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
