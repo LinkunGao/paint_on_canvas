@@ -73,7 +73,7 @@ onMounted(() => {
   deleteBtn = refs.delete;
   coloPanel = refs.coloPanel;
   colorBtn = refs.color;
-  ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
+  if (canvas) ctx = canvas.getContext("2d") as CanvasRenderingContext2D;
   initCanvas();
 
   canvas.addEventListener("mousedown", function (event) {
