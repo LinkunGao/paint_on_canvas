@@ -165,8 +165,11 @@ onMounted(() => {
     pencil.classList.remove("active");
   });
   deleteBtn.addEventListener("click", function () {
-    ctx.fillStyle = "#f0f0f0";
-    ctx.fillRect(0, 0, canvas.width, canvas.height);
+    // ctx.fillStyle = "#686767";
+    // // ctx.fillStyle = "rgba(190, 190, 190, 0.2)";
+    // ctx.fillRect(0, 0, canvas.width, canvas.height);
+    canvas.width = canvas.width;
+    canvas.height = canvas.height;
   });
 
   colorBtn.addEventListener("click", toggleColorPanel);
@@ -249,9 +252,9 @@ function checkStation() {
 //   margin: 0;
 //   box-sizing: border-box;
 // }
-// body {
-//   height: 100vh;
-// }
+body {
+  background-color: #550af7;
+}
 li {
   list-style-type: none;
 }
@@ -261,7 +264,9 @@ a {
 }
 canvas {
   position: absolute;
-  background-color: #f0f0f0;
+  background-color: rgba(190, 190, 190, 0.2);
+  //   background-color: #686767;
+  //   background-color: #cf5717;
   cursor: url("../assets/img/pencil-black.svg"), auto;
 }
 

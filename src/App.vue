@@ -15,7 +15,7 @@ function switchmode() {
     </div>
 
     <CanvasPaint v-if="mode === 'mode1'" />
-    <div v-else>haha</div>
+    <div v-else>haha lucas</div>
   </div>
 </template>
 
