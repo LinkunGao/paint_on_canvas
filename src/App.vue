@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import CanvasPaint from "./components/CanvasPaint.vue";
+import Loading from "./components/Loading.vue";
 import { ref } from "vue";
 let mode = ref("mode1");
 
@@ -15,7 +16,7 @@ function switchmode() {
     </div>
 
     <CanvasPaint v-if="mode === 'mode1'" />
-    <div v-else>haha lucas</div>
+    <Loading v-else></Loading>
   </div>
 </template>
 
