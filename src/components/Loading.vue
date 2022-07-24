@@ -19,6 +19,10 @@
           <div class="shadow"></div>
         </div>
       </div>
+      <!-- four balls -->
+      <div class="flex-center">
+        <div class="loading four-balls"></div>
+      </div>
     </div>
   </div>
 </template>
@@ -153,6 +157,76 @@
   to {
     transform: scaleX(0.2);
     opacity: 0.4;
+  }
+}
+
+// three balls end
+
+// four balls start
+
+.four-balls {
+  height: 50px;
+  width: 50px;
+  animation: four-balls-rotate 1s infinite;
+}
+.four-balls:before,
+.four-balls:after {
+  border-radius: 50%;
+  content: "";
+  display: block;
+  width: 25px;
+  height: 25px;
+}
+
+.four-balls::before {
+  animation: ball1 1s infinite;
+  background-color: #cb2025;
+  box-shadow: 30px 0 0 #f8b334;
+  margin-bottom: 10px;
+}
+.four-balls::after {
+  animation: ball2 1s infinite;
+  background-color: #00a096;
+  box-shadow: 30px 0 0 #97bf0d;
+}
+
+@keyframes four-balls-rotate {
+  0% {
+    transform: rotate(0deg) scale(0.8);
+  }
+  50% {
+    transform: rotate(360deg) scale(1.2);
+  }
+  100% {
+    transform: rotate(720deg) scale(0.8);
+  }
+}
+@keyframes ball1 {
+  0% {
+    box-shadow: 30px 0 0 #f8b334;
+  }
+  50% {
+    box-shadow: 0 0 0 #f8b334;
+    margin-bottom: 0px;
+    transform: translate(15px, 15px);
+  }
+  100% {
+    box-shadow: 30px 0 0 #f8b334;
+    margin-bottom: 10px;
+  }
+}
+@keyframes ball2 {
+  0% {
+    box-shadow: 30px 0 0 #97bf0d;
+  }
+  50% {
+    box-shadow: 0 0 0 #97bf0d;
+    margin-top: -20px;
+    transform: translate(15px, 15px);
+  }
+  100% {
+    box-shadow: 30px 0 0 #97bf0d;
+    margin-top: 0px;
   }
 }
 </style>
